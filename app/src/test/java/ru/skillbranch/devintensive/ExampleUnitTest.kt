@@ -76,14 +76,14 @@ class ExampleUnitTest {
     @Test
     fun test_data_maping() {
         val user = User.makeUser("John Wick")
-        val newUser = user.copy(lastVisit = Date().add(-7))
+        // val newUser = user.copy(lastVisit = Date().add(-7))
         val userView = user.toUserView()
-        val newUserView = newUser.toUserView()
+        // val newUserView = newUser.toUserView()
         user.printMe()
         userView.printMe()
 
-        newUser.printMe()
-        newUserView.printMe()
+        // newUser.printMe()
+        // newUserView.printMe()
     }
 
     @Test
