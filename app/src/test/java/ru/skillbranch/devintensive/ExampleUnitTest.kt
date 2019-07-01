@@ -3,10 +3,7 @@ package ru.skillbranch.devintensive
 import org.junit.Test
 
 import org.junit.Assert.*
-import ru.skillbranch.devintensive.extensions.TimeUnit
-import ru.skillbranch.devintensive.extensions.add
-import ru.skillbranch.devintensive.extensions.format
-import ru.skillbranch.devintensive.extensions.toUserView
+import ru.skillbranch.devintensive.extensions.*
 import ru.skillbranch.devintensive.models.*
 import java.util.*
 
@@ -76,14 +73,14 @@ class ExampleUnitTest {
     @Test
     fun test_data_maping() {
         val user = User.makeUser("John Wick")
-        // val newUser = user.copy(lastVisit = Date().add(-7))
-        val userView = user.toUserView()
-        // val newUserView = newUser.toUserView()
-        user.printMe()
-        userView.printMe()
+        val newUser = user.copy(lastVisit = Date().add(-13, TimeUnit.MONTH))
+        // val userView = user.toUserView()
+        val newUserView = newUser.toUserView()
+        // user.printMe()
+        // userView.printMe()
 
-        // newUser.printMe()
-        // newUserView.printMe()
+        newUser.printMe()
+        newUserView.printMe()
     }
 
     @Test
