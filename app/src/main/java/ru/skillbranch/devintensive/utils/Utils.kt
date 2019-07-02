@@ -6,9 +6,15 @@ object Utils {
         val parts : List<String>? = fullName?.split(" ")
         val firstName = parts?.getOrNull(0)
         val lastName = parts?.getOrNull(1)
-
+        val result = when {
+            firstName.isNullOrBlank() -> null
+            else -> firstName
+        } to when {
+            lastName.isNullOrBlank() -> null
+            else -> lastName
+        }
         // return Pair(firstName, lastName)
-        return firstName to lastName
+        return result
     }
 
     fun translitaration(payload: String, divider:String = " "): String {
@@ -84,8 +90,9 @@ object Utils {
         lat = lat.replace("Э".toRegex(), "E")
         lat = lat.replace("Ю".toRegex(), "IU")
         lat = lat.replace("Я".toRegex(), "IA")
+        lat = lat.replace("null", "")
+        lat = lat.trim().replace(" ", "_")
 
-        lat = lat.replace(divider, "_")
 
 
         return lat //Return latinized string
@@ -93,6 +100,19 @@ object Utils {
     }
 
     fun toInitials(firstName: String?, lastName: String?): String? {
-        return "${firstName?.first()?.toUpperCase()}${lastName?.first()?.toUpperCase()}"
+        val first = when {
+            firstName.isNullOrBlank() -> null
+            else -> firstName.first().toUpperCase()
+        }
+        val second = when {
+            lastName.isNullOrBlank() -> null
+            else -> lastName.first().toUpperCase()
+        }
+        val result = when {
+            first == null -> null
+            second == null -> first
+            else -> "$first$second"
+        }
+        return result.toString()
     }
 }
